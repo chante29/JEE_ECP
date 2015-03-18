@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 
 import es.miw.persistence.models.daos.DAOFactory;
 import es.miw.persistence.models.daos.TemaDao;
+import es.miw.persistence.models.daos.VotoDao;
 
 
 public class DaoJpaFactory extends DAOFactory {
@@ -26,6 +27,11 @@ public class DaoJpaFactory extends DAOFactory {
     @Override
     public TemaDao getTemaDao() {
         return new TemaDaoJpa();
+    }
+    
+    @Override
+    public VotoDao getVotoDao() {
+        return new VotoDaoJpa();
     }
 
 
