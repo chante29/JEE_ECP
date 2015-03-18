@@ -74,6 +74,12 @@ public class Tema {
 		this.votos = votos;
 	}
 
+	@Override
+	public String toString() {
+		return "Tema [id=" + id + ", nombre_tema=" + nombre_tema
+				+ ", pregunta=" + pregunta + ", votos=" + votos + "]";
+	}
+
 	
 	
 }
