@@ -14,4 +14,6 @@ public abstract class DAOFactory {
         return factory;
     }
 
+	public abstract TemaDao getTemaDao();
+
 }
