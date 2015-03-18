@@ -20,7 +20,11 @@ public class Tema {
     @GeneratedValue
     private Integer id;
 	
+	public static final String NOMBRE_TEMA = "nombre_tema";
+	
 	private String nombre_tema;
+	
+	public static final String PREGUNTA = "pregunta";
 	
 	private String pregunta;
 	
