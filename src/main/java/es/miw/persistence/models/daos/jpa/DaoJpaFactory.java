@@ -1,5 +1,32 @@
 package es.miw.persistence.models.daos.jpa;
 
-public class DaoJpaFactory {
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import org.apache.logging.log4j.LogManager;
+
+import es.miw.persistence.models.daos.DAOFactory;
+import es.miw.persistence.models.daos.TemaDao;
+
+
+public class DaoJpaFactory extends DAOFactory {
+    private static final String PERSISTENCE_UNIT = "temasvotados";
+
+    private static EntityManagerFactory entityManagerFactory = Persistence
+            .createEntityManagerFactory(PERSISTENCE_UNIT);
+
+    public DaoJpaFactory() {
+        LogManager.getLogger(DaoJpaFactory.class).debug("create Entity Manager Factory");
+    }
+
+    public static EntityManagerFactory getEntityManagerFactory() {
+        return entityManagerFactory;
+    }
+
+    @Override
+    public TemaDao getTemaDao() {
+        return new TemaDaoJpa();
+    }
+
 
 }
