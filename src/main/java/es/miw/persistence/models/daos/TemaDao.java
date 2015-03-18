@@ -1,5 +1,8 @@
 package es.miw.persistence.models.daos;
 
-public class TemaDao {
+import es.miw.persistence.models.entities.Tema;
+
+
+public interface TemaDao extends GenericDao<Tema, Integer>{
 
 }
