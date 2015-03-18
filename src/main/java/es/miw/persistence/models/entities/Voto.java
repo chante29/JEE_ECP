@@ -10,6 +10,9 @@ import es.miw.persistence.models.utils.NivelEstudios;
 
 @Entity
 public class Voto {
+	public static final String TABLE = "voto";
+
+    public static final String ID = "ID";
 
 	@Id
     @GeneratedValue
