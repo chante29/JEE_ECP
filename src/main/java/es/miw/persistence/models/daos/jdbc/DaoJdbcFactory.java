@@ -7,11 +7,14 @@ import java.sql.Statement;
 
 import org.apache.logging.log4j.LogManager;
 
+import es.miw.persistence.models.daos.DAOFactory;
+import es.miw.persistence.models.daos.TemaDao;
+import es.miw.persistence.models.daos.VotoDao;
 import es.miw.persistence.models.entities.Tema;
 import es.miw.persistence.models.entities.Voto;
 
 
-public class DaoJdbcFactory {
+public class DaoJdbcFactory extends DAOFactory{
 
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 
@@ -50,4 +53,15 @@ public class DaoJdbcFactory {
             LogManager.getLogger(DaoJdbcFactory.class).error("Drop tables: " + e.getMessage());
         }
     }
+    
+    @Override
+    public TemaDao getTemaDao() {
+    	return new TemaDaoJdbc();
+    }
+
+	@Override
+	public VotoDao getVotoDao() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
