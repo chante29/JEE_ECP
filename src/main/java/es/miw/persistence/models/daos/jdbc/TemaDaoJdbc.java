@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import es.miw.persistence.models.daos.TemaDao;
 import es.miw.persistence.models.entities.Tema;
-
+ 
 public class TemaDaoJdbc extends GenericDaoJdbc<Tema, Integer> implements TemaDao {
 	private Logger log = LogManager.getLogger(TemaDaoJdbc.class);
 	private Tema create(ResultSet resultSet){
