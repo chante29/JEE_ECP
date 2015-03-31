@@ -74,7 +74,10 @@ public class VotoDaoJpaTest {
 		Voto votoAux;
 		for (Voto voto : datosVotos) {
 			votoAux = votoDao.read(voto.getId());
-			votoAux.setValoracion(0);
+			if(votoAux.getValoracion() == 0)
+				votoAux.setValoracion(1);
+			else
+				votoAux.setValoracion(0);
 			votoDao.update(votoAux);
 			assertNotEquals(voto, votoDao.read(voto.getId()));
 		}
