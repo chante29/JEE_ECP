@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -28,7 +29,7 @@ public class Tema {
 	
 	private String pregunta;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Voto> votos;
 
 	
@@ -93,7 +94,8 @@ public class Tema {
 		if (this.getClass() != object.getClass())
             return false;
 		Tema temaObject = (Tema) object;
-		if(this.nombre_tema.equals(temaObject.nombre_tema) && this.pregunta.equals(temaObject.pregunta) && this.votos == temaObject.votos)
+		if(this.id == temaObject.id && this.nombre_tema.equals(temaObject.nombre_tema)
+                && pregunta.equals(temaObject.pregunta))
 			return true;
 		return false;
 	}
