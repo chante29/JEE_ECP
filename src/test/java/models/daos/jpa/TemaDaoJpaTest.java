@@ -54,8 +54,8 @@ public class TemaDaoJpaTest {
 	@Test
 	public void testCreate() {
 		List<Tema> temas = temaDao.findAll();
-		for (Tema tema : datosTemas) {
-			assertTrue(temas.contains(tema));
+		for (int i = 0; i < datosTemas.size(); i++) {
+			assertTrue(temas.get(i).equals(datosTemas.get(i)));
 		}
 		assertTrue(temas.size() == datosTemas.size());
 	}
@@ -63,7 +63,7 @@ public class TemaDaoJpaTest {
 	@Test
 	public void testRead() {
 		for (Tema tema : datosTemas) {
-			assertEquals(tema, temaDao.read(tema.getId()));
+			assertTrue(tema.equals(temaDao.read(tema.getId())));
 		}
 	}
 
