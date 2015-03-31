@@ -31,10 +31,9 @@ public class Voto {
 		super();
 	}
 
-	public Voto(Integer id, Integer valoracion, String iP,
+	public Voto(Integer valoracion, String iP,
 			NivelEstudios nivel_estudios) {
 		super();
-		this.id = id;
 		this.valoracion = valoracion;
 		IP = iP;
 		this.nivel_estudios = nivel_estudios;
