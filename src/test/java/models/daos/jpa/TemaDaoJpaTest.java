@@ -87,7 +87,7 @@ public class TemaDaoJpaTest {
 	}
 
 	@Test
-	public void testFindAll() {
+	public void testFindAll() { 
 		List<Tema> temas = temaDao.findAll();
 		for (Tema tema : datosTemas) {
 			assertTrue(temas.contains(tema));
