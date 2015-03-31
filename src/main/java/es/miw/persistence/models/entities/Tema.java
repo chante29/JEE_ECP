@@ -88,6 +88,15 @@ public class Tema {
 				+ ", pregunta=" + pregunta + ", votos=" + votos + "]";
 	}
 
+	@Override
+	public boolean equals(Object object){
+		if (this.getClass() != object.getClass())
+            return false;
+		Tema temaObject = (Tema) object;
+		if(this.nombre_tema.equals(temaObject.nombre_tema) && this.pregunta.equals(temaObject.pregunta) && this.votos == temaObject.votos)
+			return true;
+		return false;
+	}
 	
 	
 }
