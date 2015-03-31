@@ -31,4 +31,16 @@ public class ArrayToListTransformer {
 		}
 		return votos_tema;
 	}
+
+	public static Iterator<Voto> transform(Integer[] valoraciones,
+			String[] ips, NivelEstudios[] nivelEstudios) {
+
+			ArrayList<Voto> votos = new ArrayList<Voto>();
+			assert valoraciones.length == ips.length;
+			assert ips.length == nivelEstudios.length;
+			for (int i = 0; i < valoraciones.length; i++) {
+				votos.add(new Voto(valoraciones[i], ips[i], nivelEstudios[i]));
+			}
+			return votos.iterator();
+	}
 }
