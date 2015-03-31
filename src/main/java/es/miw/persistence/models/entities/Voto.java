@@ -77,5 +77,14 @@ public class Voto {
 				+ ", nivel_estudios=" + nivel_estudios + "]";
 	}
 	
+	@Override
+    public boolean equals(Object object) {
+        if (this.getClass() != object.getClass())
+            return false;
+        Voto votoAux = (Voto) object;
+        if (this.id == votoAux.id && this.IP.equals(votoAux.getIP()) && this.nivel_estudios == votoAux.nivel_estudios && this.valoracion == votoAux.valoracion) 
+            return true;
+        return false;
+    }
 	
 }
