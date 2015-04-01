@@ -7,9 +7,9 @@
 <title>Menú Principal</title>
 </head>
 <body>
-	<a href="/JEE_ECP/faces/jsp/votar">Votar</a><br>
-	<a href="/JEE_ECP/faces/jsp/verVotaciones"> ver Votaciones </a><br>
-	<a href="/JEE_ECP/faces/jsp/aniadirTema"> Añadir Tema </a><br>
-	<a href="/JEE_ECP/faces/jsp/eliminarTema"> Eliminar Tema </a><br>
+	<a href="/JEE_ECP/faces/jsp/Votar">Votar</a><br>
+	<a href="/JEE_ECP/faces/jsp/VerVotaciones"> ver Votaciones </a><br>
+	<a href="/JEE_ECP/faces/jsp/AniadirTema"> Añadir Tema </a><br>
+	<a href="/JEE_ECP/faces/jsp/EliminarTema"> Eliminar Tema </a><br>
 </body>
 </html>
