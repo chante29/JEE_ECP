@@ -1,5 +1,7 @@
 package controllers;
 
-public class EliminarTemaController {
-
+public interface EliminarTemaController {
+	boolean autorizacionCorrecta(String identificador);
+	boolean eliminarTema(Integer id);
+	
 }
