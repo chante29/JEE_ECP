@@ -10,6 +10,8 @@ import org.apache.logging.log4j.Logger;
 
 import es.miw.persistence.models.daos.TemaDao;
 import es.miw.persistence.models.entities.Tema;
+import es.miw.persistence.models.entities.Voto;
+import es.miw.persistence.models.utils.NivelEstudios;
  
 public class TemaDaoJdbc extends GenericDaoJdbc<Tema, Integer> implements TemaDao {
 	private Logger log = LogManager.getLogger(TemaDaoJdbc.class);
@@ -75,6 +77,19 @@ public class TemaDaoJdbc extends GenericDaoJdbc<Tema, Integer> implements TemaDa
 				return true;
 		}
 		return false;
+	}
+
+	@Override
+	public float mediaPorNivelEstudios(Integer id_tema,
+			NivelEstudios nivelEstudio) {
+		Tema tema = this.read(id_tema);
+		float media = 0;
+		for (Voto voto : tema.getVotos()) {
+			if(voto.getNivel_estudios() == nivelEstudio){
+				media += voto.getValoracion();
+			}
+		}
+		return media / tema.getVotos().size();
 	}
 
 }

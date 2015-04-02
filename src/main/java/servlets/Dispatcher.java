@@ -119,6 +119,13 @@ public class Dispatcher extends HttpServlet {
 			request.setAttribute(action, votarBean);
 			view =  PATH_ROOT_VIEW + votarBean.process() + JSP;
 			break;
+		case "VerVotaciones":
+			VerVotacionesBean verVotacionesBean = new VerVotacionesBean();
+			verVotacionesBean.setControllerFactory(this.controllerFactory);
+			verVotacionesBean.setTema(Integer.parseInt(request.getParameter("id_tema")));
+			request.setAttribute(action, verVotacionesBean);
+			view =  PATH_ROOT_VIEW + verVotacionesBean.process() + JSP;
+			break;
         default:
         	view = PATH_HOME;
 		}
