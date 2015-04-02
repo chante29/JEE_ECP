@@ -3,14 +3,14 @@ package controllers.ejbs;
 import java.util.List;
 
 import controllers.VotarController;
+import es.miw.persistence.models.daos.jpa.DaoJpaFactory;
 import es.miw.persistence.models.entities.Tema;
 import es.miw.persistence.models.entities.Voto;
 public class VotarControllerEjb implements VotarController{
 
 	@Override
 	public List<Tema> getAllTemas() {
-		// TODO Auto-generated method stub
-		return null;
+		return DaoJpaFactory.getFactory().getTemaDao().findAll();
 	}
 
 	@Override
