@@ -16,7 +16,7 @@ public class EliminarTemaBean extends ListaTemasBean {
 		if(token == null && idTema != null){
 			this.getControllerFactory().getEliminarTemaController().eliminarTema(idTema);
 			this.mensaje = MSG_TEMA_ELIMINADO;
-		}else if(token != null){
+		}else if(token != null && !token.equals("")){
 			autorizado = this.getControllerFactory().getEliminarTemaController().autorizacionCorrecta(token);
 			if(!autorizado){
 				this.mensaje = MSG_NO_AUTORIZADO;

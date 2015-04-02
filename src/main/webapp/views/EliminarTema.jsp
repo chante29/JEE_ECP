@@ -22,14 +22,24 @@
 	</c:when>
 	<c:otherwise>
 	<form method="POST" action="/JEE_ECP/faces/jsp/EliminarTema">
-	<p>
-			Temas: <select name="tema">
-				<c:forEach var="tema" items="${votarBean.temas}">
-					<option value="${tema.id}" >${tema.nombre_tema}</option>
-				</c:forEach>
-			</select>
-		</p>
-		<br /> <input type="submit" value="Eliminar tema" />
+	  <c:choose>
+			<c:when test="${not eliminarTemaBean.autorizado }">
+				<label for="token">Introduce c&oacute;digo: </label>
+				<input id="token" name="token" type="text" /><br />
+				<br /> <input type="submit" value="Enviar Token" />
+			</c:when>
+			<c:otherwise>
+			<div>${eliminarTemaBean.update()}</div>
+				<p>
+					Temas: <select name="tema">
+						<c:forEach var="tema" items="${eliminarTemaBean.temas}">
+							<option value="${tema.id}" >${tema.nombre_tema}</option>
+						</c:forEach>
+					</select>
+				</p>
+				<br /> <input type="submit" value="Eliminar tema" />
+			</c:otherwise>
+		</c:choose>
 	</form> 
 	</c:otherwise>
 	</c:choose>

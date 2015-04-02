@@ -102,7 +102,7 @@ public class Dispatcher extends HttpServlet {
 			String id_tema = request.getParameter("tema");
 			if(id_tema != null)
 				eliminarTemaBean.setIdTema(Integer.parseInt(id_tema));
-			
+			request.setAttribute(action, eliminarTemaBean);
 			view =  PATH_ROOT_VIEW + eliminarTemaBean.process() + JSP;
 			break;
         default:
