@@ -1,11 +1,9 @@
 package views.beans;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 
-import es.miw.persistence.models.daos.jpa.DaoJpaFactory;
 import es.miw.persistence.models.entities.Tema;
 
 public class VotarBean extends GenericBean {
@@ -13,19 +11,14 @@ public class VotarBean extends GenericBean {
 	List<Tema> temas;
 	
 	public VotarBean(){
-		temas = cargarTemasDeBBDD();
+		temas = this.getControllerFactory().getVotarController().getAllTemas();
 	}
 	
 	public void update() {
         LogManager.getLogger(VotarBean.class).debug(
                 "Se accede a la capa de negocio para recuperar temas");
-        this.temas = null;
+        this.temas = this.getControllerFactory().getVotarController().getAllTemas();
     }
-
-	private List<Tema> cargarTemasDeBBDD() {
-		
-		return DaoJpaFactory.getFactory().getTemaDao().findAll();
-	}
 
 	@Override
 	public String process() {
