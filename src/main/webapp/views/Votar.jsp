@@ -29,7 +29,7 @@
 		</p>
 	</c:otherwise>
 	</c:choose>
-	<br>
+	<br> 
 	<a href="/JEE_ECP/faces/jsp/Home">Volver</a><br>
 	
 </body>
