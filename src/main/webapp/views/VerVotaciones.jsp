@@ -16,6 +16,9 @@
 	<form method="POST" action="/JEE_ECP/faces/jsp/VerVotaciones">
 	<p>
 				Temas: <select name="id_tema" onchange="this.form.submit()">
+				<c:if test="${ empty verVotacionesBean.tema}">
+					<option value="default" selected></option>
+				</c:if>
 					<c:forEach var="tema" items="${verVotacionesBean.temas}">
 						<c:choose>
 							<c:when test="${not empty verVotacionesBean.tema && verVotacionesBean.tema.id == tema.id}">
@@ -31,13 +34,14 @@
 			</p>
 	</form>
 	<c:if test="${not empty verVotacionesBean.tema}">
+	<br>
 			<label for="numVotos">N&uacute;mero de votos: </label>
 			<input id="numVotos"  type="text" value="${verVotacionesBean.numVotos}" readonly/><br />
+			<br><br><br>
 		<c:forEach var="nivel_estudio" items="${verVotacionesBean.niveles_estudios}">
 			<c:if test="${verVotacionesBean.medias.containsKey(nivel_estudio)}">
 				<label for="nivelEstudios">N&iacute;vel de estudios: </label>
 				<input id="nivelEstudios"  type="text" value="${nivel_estudio}" readonly/><br />
-				<br>
 				<label for="notaMedia">Nota media: </label>
 				<input id="notaMedia"  type="text" value="${verVotacionesBean.medias.get(nivel_estudio)}" readonly/><br />
 				<br><br>
