@@ -7,22 +7,34 @@ import es.miw.persistence.models.utils.NivelEstudios;
 public class VotarBean extends ListaTemasBean {
 	private static final long serialVersionUID = 1L;
 	private static final String VISTA_VOTAR= "Votar";
+	private static final String MSG_VOTO_CREADO= "Voto creado con &eacute;xito";
+	
 	
 	private Tema tema;
 	private Integer valoracion;
 	private NivelEstudios[] nivelEstudios;
 	private NivelEstudios nivelEstudio;
 	private String ip;
+	private String mensaje;
 	@Override
 	public String process() {
 		if(valoracion != null){
 			this.getControllerFactory().getVotarController().aniadirVoto(tema, crearVoto());
+			this.mensaje = MSG_VOTO_CREADO;
+			this.limpiarVoto();
 		}
 		return VISTA_VOTAR;
 	}
 	
+	private void limpiarVoto(){
+		this.tema = null;
+		this.valoracion = null;
+		this.ip = "";
+		this.nivelEstudio = null;
+	}
+	
 	private Voto crearVoto(){
-		return null;
+		return this.getControllerFactory().getVotarController().crearVoto(valoracion, this.ip, this.nivelEstudio);
 	}
 
 	@Override
@@ -68,6 +80,14 @@ public class VotarBean extends ListaTemasBean {
 
 	public void setIp(String ip) {
 		this.ip = ip;
+	}
+
+	public String getMensaje() {
+		return mensaje;
+	}
+
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
 	}
 	
 	

@@ -58,19 +58,19 @@ public class Dispatcher extends HttpServlet {
             VerVotacionesBean verVotacionesBean = new VerVotacionesBean();
             verVotacionesBean.setControllerFactory(this.controllerFactory);
             request.setAttribute(action, verVotacionesBean);
-            view = PATH_ROOT_VIEW + action + JSP;;
+            view = PATH_ROOT_VIEW + action + JSP;
             break;
         case "AniadirTema":
         	AniadirTemaBean aniadirTemaBean = new AniadirTemaBean();
         	aniadirTemaBean.setControllerFactory(this.controllerFactory);
         	request.setAttribute(action, aniadirTemaBean);
-        	view = PATH_ROOT_VIEW + action + JSP;;
+        	view = PATH_ROOT_VIEW + action + JSP;
         	break;
         case "EliminarTema":
         	EliminarTemaBean eliminarTemaBean = new EliminarTemaBean();
         	eliminarTemaBean.setControllerFactory(this.controllerFactory);
         	request.setAttribute(action, eliminarTemaBean);
-        	view = PATH_ROOT_VIEW + action + JSP;;
+        	view = PATH_ROOT_VIEW + action + JSP;
         	break;
         default:
             view = PATH_HOME;

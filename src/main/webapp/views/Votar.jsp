@@ -14,6 +14,9 @@
 	</h2>
 	<c:set var="votarBean" scope="request" value="${Votar}" />
 	<div>${votarBean.update()}</div>
+	<c:if test="${not empty votarBean.mensaje}">
+	<h2>${votarBean.mensaje}</h2>
+	</c:if>
 	<form method="POST" action="/JEE_ECP/faces/jsp/Votar">
 		<c:choose>
 		<c:when test="${not empty votarBean.tema}">
