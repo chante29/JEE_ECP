@@ -50,7 +50,6 @@ public class Dispatcher extends HttpServlet {
         case "Votar":
             VotarBean votarBean = new VotarBean();
             votarBean.setControllerFactory(this.controllerFactory);
-            /*personaView.setPersona(new Persona());*/
             request.setAttribute(action, votarBean);
             view = PATH_ROOT_VIEW + action + JSP;
             break;
@@ -104,6 +103,14 @@ public class Dispatcher extends HttpServlet {
 				eliminarTemaBean.setIdTema(Integer.parseInt(id_tema));
 			request.setAttribute(action, eliminarTemaBean);
 			view =  PATH_ROOT_VIEW + eliminarTemaBean.process() + JSP;
+			break;
+		case "Votar":
+			VotarBean votarBean = new VotarBean();
+			votarBean.setControllerFactory(this.controllerFactory);
+			votarBean.setTema(Integer.parseInt(request.getParameter("id_tema")));
+			votarBean.setValoracion(Integer.parseInt(request.getParameter("valoracion")));
+			request.setAttribute(action, votarBean);
+			view =  PATH_ROOT_VIEW + votarBean.process() + JSP;
 			break;
         default:
         	view = PATH_HOME;
