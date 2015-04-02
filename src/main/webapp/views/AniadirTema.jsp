@@ -13,8 +13,8 @@
 		Vista de <b>Aniadir</b>
 	</h2>
 	<c:set var="aniadirTemaBean" scope="request" value="${AniadirTema}" />
-	<c:if test="${not empty aniadirTemaBean.error}">
-	<h2>${aniadirTemaBean.error}</h2>
+	<c:if test="${not empty aniadirTemaBean.mensaje}">
+	<h2>${aniadirTemaBean.mensaje}</h2>
 	</c:if>
 	<form method="POST" action="/JEE_ECP/faces/jsp/AniadirTema">
 		<label for="nombre_tema">Nombre del tema: </label>
@@ -23,6 +23,6 @@
 		<input id="pregunta" name="pregunta" type="text" value="${bean.tema.pregunta}" /><br />
 		<br /> <input type="submit" value="A&ntilde;adir tema" />
 	</form> 
-	<a href="/JEE_ECP/faces/jsp/Home">Volver</a><br>
+	<a href="/JEE_ECP/faces/Home.jsp">Volver</a><br>
 </body>
 </html>

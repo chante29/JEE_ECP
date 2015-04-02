@@ -30,7 +30,7 @@
 	</c:otherwise>
 	</c:choose>
 	<br> 
-	<a href="/JEE_ECP/faces/jsp/Home">Volver</a><br>
+	<a href="/JEE_ECP/faces/Home.jsp">Volver</a><br>
 	
 </body>
 </html>
