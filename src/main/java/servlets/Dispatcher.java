@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controllers.ControllerFactory;
 import controllers.ejbs.ControllerEjbFactory;
+import es.miw.persistence.models.utils.NivelEstudios;
 import views.beans.AniadirTemaBean;
 import views.beans.EliminarTemaBean;
 import views.beans.VerVotacionesBean;
@@ -108,7 +109,13 @@ public class Dispatcher extends HttpServlet {
 			VotarBean votarBean = new VotarBean();
 			votarBean.setControllerFactory(this.controllerFactory);
 			votarBean.setTema(Integer.parseInt(request.getParameter("id_tema")));
-			votarBean.setValoracion(Integer.parseInt(request.getParameter("valoracion")));
+			String valoracion = request.getParameter("valoracion");
+			if(valoracion != null && !valoracion.equals(""))
+				votarBean.setValoracion(Integer.parseInt(valoracion));
+			String nivelEstudios = request.getParameter("nivel_estudios");
+			if(nivelEstudios != null && !nivelEstudios.equals(""))
+				votarBean.setNivelEstudio(NivelEstudios.valueOf(nivelEstudios));
+			votarBean.setIp(request.getRemoteAddr());
 			request.setAttribute(action, votarBean);
 			view =  PATH_ROOT_VIEW + votarBean.process() + JSP;
 			break;

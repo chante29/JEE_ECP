@@ -21,7 +21,7 @@
 			<input id="tema" name="tema" type="text" value="${votarBean.tema.nombre_tema}" readonly/><br />
 			<input id="id_tema" name="id_tema" type="hidden" value="${votarBean.tema.id}" />
 			<label for="pregunta">Pregunta: </label>
-			<input id="pregunta" name="pregunta" type="text" value="${votarBean.tema.pregunta}" /><br />
+			<input id="pregunta" name="pregunta" type="text" value="${votarBean.tema.pregunta}" readonly/><br />
 			<p>
 				Nivel Estudios: <select name="nivel_estudios">
 					<c:forEach var="nivel_estudio" items="${votarBean.nivelEstudios}">

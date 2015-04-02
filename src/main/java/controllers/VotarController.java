@@ -11,4 +11,5 @@ public interface VotarController {
 	void aniadirVoto(Tema tema, Voto voto);
 	NivelEstudios[] getAllNivelesEstudios();
 	Tema getTema(Integer id);
+	Voto crearVoto(Integer valoracion, String IP, NivelEstudios nivel_estudios);
 }

@@ -37,4 +37,11 @@ public class VotarControllerEjb implements VotarController{
 		return DAOFactory.getFactory().getTemaDao().read(id);
 	}
 
+	@Override
+	public Voto crearVoto(Integer valoracion, String IP,
+			NivelEstudios nivel_estudios) {
+		 
+		return new Voto(valoracion, IP, nivel_estudios);
+	}
+
 }
