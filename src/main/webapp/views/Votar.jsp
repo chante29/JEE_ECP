@@ -18,7 +18,7 @@
 	<p>
 			Temas: <select name="tema">
 				<c:forEach var="tema" items="${pVoto.temas}">
-					<option value="${tema}">${tema}</option>
+					<option value="${tema.id}">${tema.nombre_tema}</option>
 				</c:forEach>
 			</select>
 		</p>

@@ -32,6 +32,7 @@ public class Dispatcher extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
 		this.controllerFactory = new ControllerEjbFactory();
 	}
 
@@ -47,6 +48,7 @@ public class Dispatcher extends HttpServlet {
             VotarBean votarBean = new VotarBean();
             votarBean.setControllerFactory(this.controllerFactory);
             /*personaView.setPersona(new Persona());*/
+            votarBean.update();
             request.setAttribute(action, votarBean);
             view = action;
             break;

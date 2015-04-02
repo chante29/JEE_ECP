@@ -11,7 +11,6 @@ public class VotarBean extends GenericBean {
 	List<Tema> temas;
 	
 	public VotarBean(){
-		temas = this.getControllerFactory().getVotarController().getAllTemas();
 	}
 	
 	public void update() {
