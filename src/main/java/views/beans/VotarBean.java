@@ -8,7 +8,7 @@ import es.miw.persistence.models.entities.Tema;
 
 public class VotarBean extends GenericBean {
 	private static final long serialVersionUID = 1L;
-	List<Tema> temas;
+	private List<Tema> temas;
 	
 	public VotarBean(){
 	}
@@ -24,5 +24,14 @@ public class VotarBean extends GenericBean {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public List<Tema> getTemas() {
+		return temas;
+	}
+
+	public void setTemas(List<Tema> temas) {
+		this.temas = temas;
+	}
+	
 	
 }
