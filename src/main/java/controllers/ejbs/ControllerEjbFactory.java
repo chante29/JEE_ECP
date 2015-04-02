@@ -5,6 +5,8 @@ import controllers.ControllerFactory;
 import controllers.EliminarTemaController;
 import controllers.VerVotacionesController;
 import controllers.VotarController;
+import es.miw.persistence.models.daos.DAOFactory;
+import es.miw.persistence.models.daos.jpa.DaoJpaFactory;
 
 public class ControllerEjbFactory extends ControllerFactory {
 
@@ -12,6 +14,10 @@ public class ControllerEjbFactory extends ControllerFactory {
 	private EliminarTemaController eliminarTemaController;
 	private VerVotacionesController verVotacionesController;
 	private VotarController votarController;
+	
+	public ControllerEjbFactory(){
+		DAOFactory.setFactory(new DaoJpaFactory());
+	}
 	@Override
 	public AniadirTemaController getAniadirTemaController() {
 		

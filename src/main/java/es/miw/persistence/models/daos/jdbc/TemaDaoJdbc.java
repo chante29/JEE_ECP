@@ -67,4 +67,14 @@ public class TemaDaoJdbc extends GenericDaoJdbc<Tema, Integer> implements TemaDa
         return list;
 	}
 
+	@Override
+	public boolean existeTema(String nombre_tema) {
+		List<Tema> list = this.findAll();
+		for (Tema tema : list) {
+			if(tema.getNombre_tema().equals(nombre_tema))
+				return true;
+		}
+		return false;
+	}
+
 }

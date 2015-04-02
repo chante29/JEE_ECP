@@ -87,6 +87,9 @@ public class Dispatcher extends HttpServlet {
 		case "AniadirTema":
         	AniadirTemaBean aniadirTemaBean = new AniadirTemaBean();
         	aniadirTemaBean.setControllerFactory(this.controllerFactory);
+        	String nombre_tema = request.getParameter("nombre_tema");
+        	String pregunta = request.getParameter("pregunta");
+        	aniadirTemaBean.setTema(nombre_tema, pregunta);
         	request.setAttribute(action, aniadirTemaBean);
         	view = aniadirTemaBean.process();
         	break;

@@ -17,12 +17,12 @@
 	<h2>${aniadirTemaBean.error}</h2>
 	</c:if>
 	<form method="POST" action="/JEE_ECP/faces/jsp/AniadirTema">
-		<label for="nombre">Nombre del tema: </label>
-		<input id="nombre" name="nombre" type="text" /><br />
+		<label for="nombre_tema">Nombre del tema: </label>
+		<input id="nombre_tema" name="nombre_tema" type="text" /><br />
 		<label for="pregunta">Pregunta del tema: </label>
 		<input id="pregunta" name="pregunta" type="text" value="${bean.tema.pregunta}" /><br />
 		<br /> <input type="submit" value="A&ntilde;adir tema" />
-	</form>
+	</form> 
 	<a href="/JEE_ECP/faces/jsp/Home">Volver</a><br>
 </body>
 </html>

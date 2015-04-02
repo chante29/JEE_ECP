@@ -22,6 +22,7 @@ public class DaoJpaFactory extends DAOFactory {
 
     public DaoJpaFactory() {
         LogManager.getLogger(DaoJpaFactory.class).debug("create Entity Manager Factory");
+        DAOFactory.setFactory(this);
     }
 
     public static EntityManagerFactory getEntityManagerFactory() {
