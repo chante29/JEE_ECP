@@ -1,19 +1,24 @@
 package controllers.ejbs;
 
 import controllers.EliminarTemaController;
+import es.miw.persistence.models.daos.DAOFactory;
 
 public class EliminarTemaControllerEjb implements EliminarTemaController {
 
 	@Override
 	public boolean autorizacionCorrecta(String identificador) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			Integer intToken = Integer.parseInt(identificador);
+			return intToken == 666;
+			
+		  } catch (NumberFormatException e) {
+		    return false;
+		  }
 	}
 
 	@Override
-	public boolean eliminarTema(Integer id) {
-		// TODO Auto-generated method stub
-		return false;
+	public void eliminarTema(Integer id) {
+		DAOFactory.getFactory().getTemaDao().deleteById(id);
 	}
 
 }

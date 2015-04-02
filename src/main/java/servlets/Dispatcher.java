@@ -95,6 +95,16 @@ public class Dispatcher extends HttpServlet {
         	request.setAttribute(action, aniadirTemaBean);
         	view = PATH_ROOT_VIEW + aniadirTemaBean.process() + JSP;
         	break;
+		case "EliminarTema":
+			EliminarTemaBean eliminarTemaBean = new EliminarTemaBean();
+			eliminarTemaBean.setControllerFactory(this.controllerFactory);
+			eliminarTemaBean.setToken(request.getParameter("token"));
+			String id_tema = request.getParameter("tema");
+			if(id_tema != null)
+				eliminarTemaBean.setIdTema(Integer.parseInt(id_tema));
+			
+			view =  PATH_ROOT_VIEW + eliminarTemaBean.process() + JSP;
+			break;
         default:
         	view = PATH_HOME;
 		}
