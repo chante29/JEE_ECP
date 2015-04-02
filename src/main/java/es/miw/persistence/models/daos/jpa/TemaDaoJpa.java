@@ -1,11 +1,15 @@
 package es.miw.persistence.models.daos.jpa;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.Tuple;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -31,32 +35,27 @@ public class TemaDaoJpa extends GenericDaoJpa<Tema, Integer > implements TemaDao
 	}
 
 	@Override
-	public float mediaPorNivelEstudios(Integer id_tema,
-			NivelEstudios nivelEstudio) {
+	public HashMap<NivelEstudios, Double> mediasPorNivelEstudios(Integer id_tema) {
+		
 			EntityManager entityManager = DaoJpaFactory.getEntityManagerFactory()
 					.createEntityManager();
-			CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-			CriteriaQuery<Voto> query = builder.createQuery(Voto.class);
-			Root<Tema> root = query.from(Tema.class);
-			query.select(root.get("votos"));
-			Predicate p1 = builder.equal(root.get("id").as(Integer.class),
-					id_tema);
-			Predicate p2 = builder.equal(root.get("votos").get("nivel_estudios").as(NivelEstudios.class),
-					nivelEstudio);
-			Predicate predicate = builder.and(p1, p2);
-			query.where(predicate);
-			TypedQuery<Voto> typedQuery = entityManager.createQuery(query);
-			List<Voto> result = typedQuery.getResultList();
-			entityManager.close();
+			CriteriaBuilder criteria = entityManager.getCriteriaBuilder();
+			CriteriaQuery<Tuple> criteriaQuery = criteria.createQuery(Tuple.class);
+			Root<Tema> temas = criteriaQuery.from(Tema.class);
+			Path<Object> path = temas.join("votos");
+			CriteriaQuery<Tuple> select = criteriaQuery.select(criteria.tuple(path.get("nivel_estudios"), criteria.avg(path.get("valoracion"))));
+			select.where(criteria.equal(temas.get("id"), id_tema));
+			select.groupBy(path.get("nivel_estudios"));
+			List<Tuple> result = entityManager.createQuery(select).getResultList();
 			return this.getMediaVotos(result);
 	}
 
-	private float getMediaVotos(List<Voto> votos) {
-		float media = 0;
-		for (Voto voto : votos) {
-			media += voto.getValoracion();
+	private HashMap<NivelEstudios, Double> getMediaVotos(List<Tuple> votos) {
+		HashMap<NivelEstudios, Double> medias = new HashMap<NivelEstudios, Double> ();
+		for (Tuple voto : votos) {
+			medias.put(NivelEstudios.valueOf(String.valueOf(voto.get(0))), Double.parseDouble(String.valueOf(voto.get(1))));
 		}
-		return media / votos.size();
+		return medias;
 	}
 			
 			

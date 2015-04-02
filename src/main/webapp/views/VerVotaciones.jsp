@@ -12,7 +12,7 @@
 		Vista de <b>Ver Votaciones</b>
 	</h2>
 	<c:set var="verVotacionesBean" scope="request" value="${VerVotaciones}" />
-	<div>${verVotaciones.update()}</div>
+	<div>${verVotacionesBean.update()}</div>
 	<form method="POST" action="/JEE_ECP/faces/jsp/VerVotaciones">
 	<p>
 				Temas: <select name="id_tema" onchange="this.form.submit()">
@@ -34,11 +34,14 @@
 			<label for="numVotos">N&uacute;mero de votos: </label>
 			<input id="numVotos"  type="text" value="${verVotacionesBean.numVotos}" readonly/><br />
 		<c:forEach var="nivel_estudio" items="${verVotacionesBean.niveles_estudios}">
-			<label for="nivelEstudios">N&iacute;vel de estudios: </label>
-			<input id="nivelEstudios"  type="text" value="${nivel_estudio}" readonly/><br />
-			<br>
-			<label for="notaMedia">Nota media: </label>
-			<input id="notaMedia"  type="text" value="${verVotacionesBean.medias.get(nivel_estudio)}" readonly/><br />
+			<c:if test="${verVotacionesBean.medias.containsKey(nivel_estudio)}">
+				<label for="nivelEstudios">N&iacute;vel de estudios: </label>
+				<input id="nivelEstudios"  type="text" value="${nivel_estudio}" readonly/><br />
+				<br>
+				<label for="notaMedia">Nota media: </label>
+				<input id="notaMedia"  type="text" value="${verVotacionesBean.medias.get(nivel_estudio)}" readonly/><br />
+				<br><br>
+			</c:if>
 		
 		</c:forEach>
 		

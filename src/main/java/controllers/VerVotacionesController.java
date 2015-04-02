@@ -8,5 +8,5 @@ import es.miw.persistence.models.utils.NivelEstudios;
 public interface VerVotacionesController {
 
 	int getNumeroVotos(Tema tema);
-	HashMap<NivelEstudios, Float> getMediaPorNivelEstudios(Tema tema);
+	HashMap<NivelEstudios, Double> getMediaPorNivelEstudios(Tema tema);
 }

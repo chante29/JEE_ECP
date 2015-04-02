@@ -10,7 +10,7 @@ public class VerVotacionesBean extends ListaTemasBean {
 	private static final String VISTA_VER_VOTACIONES= "VerVotaciones";
 	private Integer numVotos;
 	
-	private HashMap<NivelEstudios, Float> medias;
+	private HashMap<NivelEstudios, Double> medias;
 	
 	private NivelEstudios[] niveles_estudios;
 	
@@ -45,12 +45,12 @@ public class VerVotacionesBean extends ListaTemasBean {
 	}
 
 
-	public HashMap<NivelEstudios, Float> getMedias() {
+	public HashMap<NivelEstudios, Double> getMedias() {
 		return medias;
 	}
 
 
-	public void setMedias(HashMap<NivelEstudios, Float> medias) {
+	public void setMedias(HashMap<NivelEstudios, Double> medias) {
 		this.medias = medias;
 	}
 

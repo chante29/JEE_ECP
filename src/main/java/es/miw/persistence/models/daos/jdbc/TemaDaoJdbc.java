@@ -3,6 +3,7 @@ package es.miw.persistence.models.daos.jdbc;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -80,16 +81,17 @@ public class TemaDaoJdbc extends GenericDaoJdbc<Tema, Integer> implements TemaDa
 	}
 
 	@Override
-	public float mediaPorNivelEstudios(Integer id_tema,
-			NivelEstudios nivelEstudio) {
+	public HashMap<NivelEstudios, Double> mediasPorNivelEstudios(Integer id_tema) {
 		Tema tema = this.read(id_tema);
-		float media = 0;
-		for (Voto voto : tema.getVotos()) {
+		HashMap<NivelEstudios, Double> medias = new HashMap<NivelEstudios, Double>();
+		/*for (Voto voto : tema.getVotos()) {
+			int numVotosNivel = this.votosNivel(tema.getVotos(), voto.getNivel_estudios());
+			
 			if(voto.getNivel_estudios() == nivelEstudio){
 				media += voto.getValoracion();
 			}
-		}
-		return media / tema.getVotos().size();
+		}*/
+		return medias;
 	}
 
 }

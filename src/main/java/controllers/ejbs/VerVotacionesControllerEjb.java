@@ -15,12 +15,8 @@ public class VerVotacionesControllerEjb implements VerVotacionesController {
 	}
 
 	@Override
-	public HashMap<NivelEstudios, Float> getMediaPorNivelEstudios(Tema tema) {
-		HashMap<NivelEstudios, Float> mediasNivelEstudio = new HashMap<NivelEstudios, Float>();
-		for (NivelEstudios nivelEstudio : NivelEstudios.values()) {
-			mediasNivelEstudio.put(nivelEstudio, DAOFactory.getFactory().getTemaDao().mediaPorNivelEstudios(tema.getId(), nivelEstudio));
-		}
-		return mediasNivelEstudio;
+	public HashMap<NivelEstudios, Double> getMediaPorNivelEstudios(Tema tema) {
+		return DAOFactory.getFactory().getTemaDao().mediasPorNivelEstudios(tema.getId());
 	}
 
 }
