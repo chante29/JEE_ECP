@@ -1,10 +1,13 @@
 package views.beans;
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedProperty;
 
 import controllers.ControllerFactory;
-public abstract class GenericBean {
+public abstract class GenericBean implements Serializable {
 	
-	    @ManagedProperty(value = "#{controllerFactory}")
+	private static final long serialVersionUID = 1L;
+		@ManagedProperty(value = "#{controllerFactory}")
 	    private ControllerFactory controllerFactory;
 
 	    public void setControllerFactory(ControllerFactory controllerFactory) {
@@ -17,6 +20,6 @@ public abstract class GenericBean {
 	    
 	    public abstract void update();
 	    
-	    public abstract void process();
+	    public abstract String process();
 
 }
