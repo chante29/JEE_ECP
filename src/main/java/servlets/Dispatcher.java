@@ -42,7 +42,7 @@ public class Dispatcher extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getPathInfo().substring(1);
-		String view = "Home";
+		String view;
 		switch (action) {
         case "Votar":
             VotarBean votarBean = new VotarBean();
@@ -81,7 +81,20 @@ public class Dispatcher extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String action = request.getPathInfo().substring(1);
+		String view;
+		switch (action) {
+		case "AniadirTema":
+        	AniadirTemaBean aniadirTemaBean = new AniadirTemaBean();
+        	aniadirTemaBean.setControllerFactory(this.controllerFactory);
+        	request.setAttribute(action, aniadirTemaBean);
+        	view = aniadirTemaBean.process();
+        	break;
+        default:
+        	view = "Home";
+		}
+		this.getServletContext().getRequestDispatcher(PATH_ROOT_VIEW + view + ".jsp")
+        .forward(request, response);
 	}
 
 }
