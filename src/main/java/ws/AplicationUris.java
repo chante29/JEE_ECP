@@ -1,6 +1,6 @@
 package ws;
 
-public class Uris {
+public class AplicationUris {
 	String PATH_TEMAS = "/temas";
 
     String PATH_ID_PARAM = "/{id}";
