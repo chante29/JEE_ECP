@@ -8,9 +8,9 @@ public class EliminarTemaControllerWs implements EliminarTemaController {
 
 	@Override
 	public boolean autorizacionCorrecta(String identificador) {
-		
-		return ControllerWs.buildWebServiceManager(TemaUris.PATH_TEMAS,TemaUris.PATH_AUTORIZACION,  "/",  identificador)
-		        .read();
+		boolean autorizacion = ControllerWs.buildWebServiceManager(TemaUris.PATH_TEMAS,TemaUris.PATH_AUTORIZACION,  "/",  identificador)
+		        .entityBoolean();
+		return autorizacion;
 	}
 
 	@Override

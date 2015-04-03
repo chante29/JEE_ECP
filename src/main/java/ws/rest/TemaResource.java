@@ -91,9 +91,9 @@ public class TemaResource {
     
     @Path(TemaUris.PATH_AUTORIZACION + TemaUris.PATH_ID_PARAM)
     @GET
-    public boolean autorizar(@PathParam("id") String id) {
+    public String autorizar(@PathParam("id") String id) {
         this.debug("/"+ TemaUris.PATH_TEMAS + "/" + TemaUris.PATH_MEDIAS + "/" + id + "/GETMEDIAS:");
-        return Integer.parseInt(id) == TOKEN ? true: false;
+        return Integer.parseInt(id) == TOKEN ? String.valueOf(true): String.valueOf(false);
     }
 
 
