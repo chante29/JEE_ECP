@@ -5,10 +5,12 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import es.miw.persistence.models.utils.NivelEstudios;
 
 @Entity
+@XmlRootElement
 public class Voto {
 	public static final String TABLE = "voto";
 
