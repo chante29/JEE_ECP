@@ -15,7 +15,7 @@ public class VerVotacionesControllerWs implements VerVotacionesController {
 		
         Tema temaRecuperado = ControllerWs.buildWebServiceManager(TemaUris.PATH_TEMAS, tema.getId().toString()).entity(Tema.class);
         
-		return temaRecuperado.getVotos().size();
+		return temaRecuperado.getVotos() == null ? 0 : temaRecuperado.getVotos().size();
 	}
 
 	@Override
