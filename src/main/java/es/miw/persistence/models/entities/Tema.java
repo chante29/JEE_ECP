@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 
-@Entity
+@Entity 
 public class Tema {
 	public static final String TABLE = "tema";
 
