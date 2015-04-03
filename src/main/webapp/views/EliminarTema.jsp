@@ -12,6 +12,7 @@
 		Vista de <b>Eliminar</b>
 	</h2>
 	<c:set var="eliminarTemaBean" scope="request" value="${EliminarTema}" />
+	<div>${eliminarTemaBean.update()}</div>
 	<c:if test="${not empty eliminarTemaBean.mensaje}">
 	<h2>${eliminarTemaBean.mensaje}</h2>
 	</c:if>
