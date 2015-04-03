@@ -1,6 +1,8 @@
 package ws.rest;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -16,6 +18,7 @@ import org.apache.logging.log4j.LogManager;
 
 import es.miw.persistence.models.daos.DAOFactory;
 import es.miw.persistence.models.daos.jpa.DaoJpaFactory;
+import es.miw.persistence.models.entities.Tema;
 import es.miw.persistence.models.entities.Voto;
 import ws.VotoUris;
 
@@ -32,7 +35,16 @@ public class VotoResource {
 	
 	@POST
     @Consumes(MediaType.APPLICATION_XML)
-    public Response create(Voto voto) {
+	@Path(VotoUris.PATH_ID_PARAM)
+    public Response create(@PathParam("id") Integer id, Voto voto) {
+		Tema tema = DAOFactory.getFactory().getTemaDao().read(id);
+		List<Voto> votos = tema.getVotos();
+		if(votos == null){
+			votos = new ArrayList<Voto>();
+		}
+		votos.add(voto);
+		tema.setVotos(votos);
+		DAOFactory.getFactory().getTemaDao().update(tema);
         DAOFactory.getFactory().getVotoDao().create(voto);
         this.debug("POST/" + VotoUris.PATH_VOTOS + "/ " + voto);
         return Response.created(URI.create(VotoUris.PATH_VOTOS + "/" + voto.getValoracion()))

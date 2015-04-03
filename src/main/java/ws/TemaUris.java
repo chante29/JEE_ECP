@@ -6,6 +6,8 @@ public interface TemaUris {
 	String PATH_MEDIAS = "/medias";
 
     String PATH_ID_PARAM = "/{id}";
+    
+    String PATH_AUTORIZACION = "/autorizacion";
 
 
 }

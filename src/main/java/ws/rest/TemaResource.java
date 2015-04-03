@@ -28,6 +28,8 @@ import es.miw.persistence.models.utils.NivelEstudios;
 @Path(TemaUris.PATH_TEMAS)
 public class TemaResource {
 	
+	private final Integer TOKEN = 666;
+	
     private void debug(String msg) {
         LogManager.getLogger(this.getClass()).debug(TemaUris.PATH_TEMAS + msg);
     }
@@ -53,14 +55,13 @@ public class TemaResource {
         return tema;
     }
 
-    @Path(TemaUris.PATH_TEMAS)
     @PUT
     @Consumes(MediaType.APPLICATION_XML)
     public Response update(Tema tema) {
         DAOFactory.getFactory().getTemaDao().update(tema);
         this.debug("/" + tema.getId() + "/"+ TemaUris.PATH_TEMAS + " /PUTTEMA: " + tema);
        return Response.created(URI.create(TemaUris.PATH_TEMAS + "/" + tema.getId()))
-       			.entity(tema.getId()).build(); 
+       			.entity(Tema.class).build(); 
     }
 
     
@@ -78,12 +79,19 @@ public class TemaResource {
         this.debug("/" +TemaUris.PATH_ID_PARAM + "/" + id + " /DELETE");
     }
 
-    @Path(TemaUris.PATH_MEDIAS + TemaUris.PATH_ID_PARAM)
+    @Path(TemaUris.PATH_TEMAS + TemaUris.PATH_MEDIAS + TemaUris.PATH_ID_PARAM)
     @GET
     @Produces(MediaType.APPLICATION_XML)
     public HashMap<NivelEstudios, Double> mediasPorNivelEstudios(@PathParam("id") Integer id) {
         this.debug("/"+ TemaUris.PATH_TEMAS + "/" + TemaUris.PATH_MEDIAS + "/" + id + "/GETMEDIAS:");
         return DAOFactory.getFactory().getTemaDao().mediasPorNivelEstudios(id);
+    }
+    
+    @Path(TemaUris.PATH_TEMAS + TemaUris.PATH_AUTORIZACION + TemaUris.PATH_ID_PARAM)
+    @GET
+    public boolean autorizar(@PathParam("id") Integer id) {
+        this.debug("/"+ TemaUris.PATH_TEMAS + "/" + TemaUris.PATH_MEDIAS + "/" + id + "/GETMEDIAS:");
+        return id == TOKEN ? true: false;
     }
 
 
