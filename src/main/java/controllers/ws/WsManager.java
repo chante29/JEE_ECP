@@ -1,5 +1,6 @@
 package controllers.ws;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.ws.rs.client.ClientBuilder;
@@ -118,6 +119,22 @@ public class WsManager {
 
     public <T> List<T> entities(GenericType<List<T>> genericType) {
         List<T> result = null;
+        if (this.getResponse().hasEntity()) {
+            result = this.getResponse().readEntity(genericType);
+        }
+        return result;
+    }
+    
+    public <T> T[] entitiesArray(GenericType<T[]> genericType) {
+    	T[] result = null;
+        if (this.getResponse().hasEntity()) {
+            result = this.getResponse().readEntity(genericType);
+        }
+        return result;
+    }
+    
+    public <T, V> HashMap<T, V> entitiesHashMap(GenericType<HashMap<T, V>> genericType) {
+    	HashMap<T, V> result = null;
         if (this.getResponse().hasEntity()) {
             result = this.getResponse().readEntity(genericType);
         }

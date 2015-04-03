@@ -2,6 +2,10 @@ package controllers.ws;
 
 import java.util.List;
 
+import javax.ws.rs.core.GenericType;
+
+import ws.TemaUris;
+import ws.VotoUris;
 import controllers.VotarController;
 import es.miw.persistence.models.entities.Tema;
 import es.miw.persistence.models.entities.Voto;
@@ -11,33 +15,35 @@ public class VotarControllerWs implements VotarController{
 
 	@Override
 	public List<Tema> getAllTemas() {
-		// TODO Auto-generated method stub
-		return null;
+		GenericType<List<Tema>> genericType = new GenericType<List<Tema>>() {
+        };
+		return ControllerWs.buildWebServiceManager(TemaUris.PATH_TEMAS).entities(genericType);
 	}
 
 	@Override
 	public void aniadirVoto(Tema tema, Voto voto) {
-		// TODO Auto-generated method stub
+		ControllerWs.buildWebServiceManager(VotoUris.PATH_VOTOS, tema.getId().toString()).create();
 		
 	}
 
 	@Override
 	public NivelEstudios[] getAllNivelesEstudios() {
-		// TODO Auto-generated method stub
-		return null;
+		GenericType<NivelEstudios[]> genericType = new GenericType<NivelEstudios[]>() {
+        };
+		return ControllerWs.buildWebServiceManager(TemaUris.PATH_TEMAS).entitiesArray(genericType);
 	}
 
 	@Override
 	public Tema getTema(Integer id) {
-		// TODO Auto-generated method stub
+		ControllerWs.buildWebServiceManager(TemaUris.PATH_TEMAS, id.toString()).entity(Tema.class);
 		return null;
 	}
 
 	@Override
 	public Voto crearVoto(Integer valoracion, String IP,
 			NivelEstudios nivel_estudios) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return new Voto(valoracion, IP, nivel_estudios);
 	}
 
 }
