@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controllers.ControllerFactory;
 import controllers.ejbs.ControllerEjbFactory;
+import controllers.ws.ControllerWsFactory;
 import es.miw.persistence.models.utils.NivelEstudios;
 import views.beans.AniadirTemaBean;
 import views.beans.EliminarTemaBean;
@@ -37,7 +38,7 @@ public class Dispatcher extends HttpServlet {
 	 */
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
-		this.controllerFactory = new ControllerEjbFactory();
+		this.controllerFactory = new ControllerWsFactory();
 	}
 
 
