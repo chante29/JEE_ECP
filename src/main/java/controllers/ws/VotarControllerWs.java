@@ -4,11 +4,13 @@ import java.util.List;
 
 import javax.ws.rs.core.GenericType;
 
+import ws.NivelEstudiosUri;
 import ws.TemaUris;
 import ws.VotoUris;
 import controllers.VotarController;
 import es.miw.persistence.models.entities.Tema;
 import es.miw.persistence.models.entities.Voto;
+import es.miw.persistence.models.utils.ListaNivelEstudios;
 import es.miw.persistence.models.utils.NivelEstudios;
 
 public class VotarControllerWs implements VotarController{
@@ -22,21 +24,24 @@ public class VotarControllerWs implements VotarController{
 
 	@Override
 	public void aniadirVoto(Tema tema, Voto voto) {
-		ControllerWs.buildWebServiceManager(VotoUris.PATH_VOTOS, tema.getId().toString()).create();
+		ControllerWs.buildWebServiceManager(VotoUris.PATH_VOTOS, VotoUris.PATH_VOTO,"/", tema.getId().toString()).create(voto);
 		
 	}
 
 	@Override
 	public NivelEstudios[] getAllNivelesEstudios() {
-		GenericType<NivelEstudios[]> genericType = new GenericType<NivelEstudios[]>() {
-        };
-		return ControllerWs.buildWebServiceManager(TemaUris.PATH_TEMAS).entitiesArray(genericType);
+		ListaNivelEstudios listaNiveles = ControllerWs.buildWebServiceManager(NivelEstudiosUri.PATH_NIVELES).entity(ListaNivelEstudios.class);
+		NivelEstudios[] nivelesEstudio = new NivelEstudios[listaNiveles.getListaNivelEstudios().size()];
+		for (int nivelEstudio = 0; nivelEstudio < nivelesEstudio.length; nivelEstudio++) {
+			nivelesEstudio[nivelEstudio] = NivelEstudios.valueOf(listaNiveles.getListaNivelEstudios().get(nivelEstudio));
+		}
+		return nivelesEstudio;
 	}
 
 	@Override
 	public Tema getTema(Integer id) {
-		ControllerWs.buildWebServiceManager(TemaUris.PATH_TEMAS, id.toString()).entity(Tema.class);
-		return null;
+		return ControllerWs.buildWebServiceManager(TemaUris.PATH_TEMAS, id.toString()).entity(Tema.class);
+
 	}
 
 	@Override

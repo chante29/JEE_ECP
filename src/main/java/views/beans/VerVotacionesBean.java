@@ -19,9 +19,10 @@ public class VerVotacionesBean extends ListaTemasBean {
 	@Override
 	public String process() {
 		if(tema != null){
-			this.niveles_estudios = this.getControllerFactory().getVotarController().getAllNivelesEstudios();
 			this.numVotos = this.getControllerFactory().getVerVotacionesController().getNumeroVotos(tema);
 			this.medias = this.getControllerFactory().getVerVotacionesController().getMediaPorNivelEstudios(tema);
+			this.niveles_estudios = this.getControllerFactory().getVotarController().getAllNivelesEstudios();
+			
 			
 		}
 

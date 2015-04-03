@@ -1,5 +1,9 @@
 package controllers.ws;
 
+import java.util.List;
+
+import javax.ws.rs.core.GenericType;
+
 import ws.TemaUris;
 import controllers.AniadirTemaController;
 import es.miw.persistence.models.entities.Tema;
@@ -14,8 +18,15 @@ public class AniadirTemaControllerWs implements AniadirTemaController{
 
 	@Override
 	public boolean existeTema(Tema tema) {
-		Tema temaDevuelto = ControllerWs.buildWebServiceManager(TemaUris.PATH_TEMAS, tema.getId().toString()).entity(Tema.class);
-		return temaDevuelto != null ? true : false;
+		GenericType<List<Tema>> genericType = new GenericType<List<Tema>>() {
+        };
+        List<Tema> temas =  ControllerWs.buildWebServiceManager(TemaUris.PATH_TEMAS).entities(genericType);
+        for (Tema temaExiste : temas) {
+			if(tema.getNombre_tema().equals(temaExiste.getNombre_tema())){
+				return true;
+			}
+		}
+        return false;
 	}
 
 }
