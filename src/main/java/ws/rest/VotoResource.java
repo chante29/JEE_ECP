@@ -34,10 +34,10 @@ public class VotoResource {
 	}
 	
 	@POST
+	@Path(VotoUris.PATH_VOTO + VotoUris.PATH_ID_PARAM)
     @Consumes(MediaType.APPLICATION_XML)
-	@Path(VotoUris.PATH_ID_PARAM)
-    public Response create(@PathParam("id") Integer id, Voto voto) {
-		Tema tema = DAOFactory.getFactory().getTemaDao().read(id);
+    public Response create(@PathParam("id") String id, Voto voto) {
+		Tema tema = DAOFactory.getFactory().getTemaDao().read(Integer.parseInt(id));
 		List<Voto> votos = tema.getVotos();
 		if(votos == null){
 			votos = new ArrayList<Voto>();
@@ -45,7 +45,6 @@ public class VotoResource {
 		votos.add(voto);
 		tema.setVotos(votos);
 		DAOFactory.getFactory().getTemaDao().update(tema);
-        DAOFactory.getFactory().getVotoDao().create(voto);
         this.debug("POST/" + VotoUris.PATH_VOTOS + "/ " + voto);
         return Response.created(URI.create(VotoUris.PATH_VOTOS + "/" + voto.getValoracion()))
                 .entity(voto.getId()).build();

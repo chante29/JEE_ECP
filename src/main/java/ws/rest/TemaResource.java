@@ -22,6 +22,7 @@ import org.apache.logging.log4j.LogManager;
 import es.miw.persistence.models.daos.DAOFactory;
 import es.miw.persistence.models.daos.jpa.DaoJpaFactory;
 import es.miw.persistence.models.entities.Tema;
+import es.miw.persistence.models.utils.ListaMedias;
 import es.miw.persistence.models.utils.NivelEstudios;
 
 
@@ -79,19 +80,20 @@ public class TemaResource {
         this.debug("/" +TemaUris.PATH_ID_PARAM + "/" + id + " /DELETE");
     }
 
-    @Path(TemaUris.PATH_TEMAS + TemaUris.PATH_MEDIAS + TemaUris.PATH_ID_PARAM)
+    @Path(TemaUris.PATH_MEDIAS + TemaUris.PATH_ID_PARAM)
     @GET
     @Produces(MediaType.APPLICATION_XML)
-    public HashMap<NivelEstudios, Double> mediasPorNivelEstudios(@PathParam("id") Integer id) {
+    public ListaMedias mediasPorNivelEstudios(@PathParam("id") String id) {
         this.debug("/"+ TemaUris.PATH_TEMAS + "/" + TemaUris.PATH_MEDIAS + "/" + id + "/GETMEDIAS:");
-        return DAOFactory.getFactory().getTemaDao().mediasPorNivelEstudios(id);
+        HashMap<NivelEstudios, Double> medias = DAOFactory.getFactory().getTemaDao().mediasPorNivelEstudios(Integer.parseInt(id));
+		return new ListaMedias(medias);
     }
     
-    @Path(TemaUris.PATH_TEMAS + TemaUris.PATH_AUTORIZACION + TemaUris.PATH_ID_PARAM)
+    @Path(TemaUris.PATH_AUTORIZACION + TemaUris.PATH_ID_PARAM)
     @GET
-    public boolean autorizar(@PathParam("id") Integer id) {
+    public boolean autorizar(@PathParam("id") String id) {
         this.debug("/"+ TemaUris.PATH_TEMAS + "/" + TemaUris.PATH_MEDIAS + "/" + id + "/GETMEDIAS:");
-        return id == TOKEN ? true: false;
+        return Integer.parseInt(id) == TOKEN ? true: false;
     }
 
 
