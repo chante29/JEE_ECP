@@ -4,18 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.Tuple;
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Path;
-import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import es.miw.persistence.models.daos.TemaDao;
 import es.miw.persistence.models.entities.Tema;
-import es.miw.persistence.models.entities.Voto;
 import es.miw.persistence.models.utils.NivelEstudios;
 
 public class TemaDaoJpa extends GenericDaoJpa<Tema, Integer > implements TemaDao {

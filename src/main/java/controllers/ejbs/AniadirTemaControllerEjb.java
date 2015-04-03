@@ -8,7 +8,7 @@ public class AniadirTemaControllerEjb implements AniadirTemaController {
 
 	@Override
 	public void aniadirTema(Tema tema) {
-		DAOFactory.getFactory().getTemaDao().create(tema);
+		DAOFactory.getFactory().getTemaDao().create(tema); 
 	}
 
 	@Override
